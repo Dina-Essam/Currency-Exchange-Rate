@@ -25,13 +25,16 @@ data from the external API.
 3- Install the dependencies<br>
     pipenv install
     
-4- Run Migrations<br>
+4- Update MySql configuration<br>
+    update in file my.cnf
+    
+5- Run Migrations<br>
     python manage.py migrate
     
-5- Get Currencies data<br>
+6- Get Currencies data and rates from 2020-01-01 to 2020-01-31<br>
     python manage.py seed --mode=refresh
     
-6- Start the django server<br>
+7- Start the django server<br>
     python manage.py runserver
     
 

@@ -8,8 +8,8 @@ from .helpers import helper_functions
 
 @api_view(['GET'])
 def exchangeRate(request):
-    from_currency = request.query_params.get('from')
-    to_currency = request.query_params.get('to')
+    from_currency = request.query_params.get('from').upper()
+    to_currency = request.query_params.get('to').upper()
     date = request.query_params.get('date')
     rate = helper_functions.get_exchange_rate(from_currency, to_currency, date)
     serializer = ExchangeRateSerializer(rate, many=False)

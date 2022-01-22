@@ -9,6 +9,9 @@ class CurrencySerializer(serializers.ModelSerializer):
 
 
 class ExchangeRateSerializer(serializers.ModelSerializer):
+    To_Currency = serializers.CharField(source='To.symbol')
+    From_Currency = serializers.CharField(source='From.symbol')
+
     class Meta:
         model = ExchangeRate
-        fields = '__all__'
+        fields = ('rate', 'date','To_Currency','From_Currency')

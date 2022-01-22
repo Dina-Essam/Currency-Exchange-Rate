@@ -27,7 +27,11 @@ def get_from_frankfurter(from_currency, to_currency, date):
 
 
 def check_day_weekend(date):
-    date = parse_date(date)
+    try:
+        date = parse_date(date)
+    except ValueError as ex:
+        raise CustomValidation(ex.__str__(), 'message',
+                               status_code=status.HTTP_422_UNPROCESSABLE_ENTITY)
     if date.weekday() in [5, 6]:
         date = date + relativedelta(weekday=FR(-1))
     return date.__str__()

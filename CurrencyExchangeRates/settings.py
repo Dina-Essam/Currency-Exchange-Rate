@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%376tok$#(^v5%+oazb94h9s2r8pl#9@=n76^exf($p_n#u1%!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['.localhost', '127.0.0.1', '[::1]']
 
@@ -76,11 +76,9 @@ WSGI_APPLICATION = 'CurrencyExchangeRates.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',  # <-- UPDATED line
-        'NAME': 'exchange_rate',  # <-- UPDATED line
-        'USER': 'root',  # <-- UPDATED line
-        'PASSWORD': 'root',  # <-- UPDATED line
-        'HOST': 'localhost',  # <-- UPDATED line
-        'PORT': '3306',
+        'OPTIONS': {
+            'read_default_file': os.path.join(BASE_DIR, 'my.cnf'),
+        },
     }
 }
 

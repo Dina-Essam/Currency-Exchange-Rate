@@ -43,6 +43,7 @@ def check_day_weekend(date):
     """Check its weekend day.
         :parameter date:
         :returns date
+        Check if the date is valid
         Check if the date is Sunday or Saturday return previous friday date.
         else return the same date
     """
@@ -61,17 +62,17 @@ class helper_functions:
     @staticmethod
     def get_exchange_rate(from_currency, to_currency, date):
         """Check its weekend day.
-                :param from_currency:
-                :param to_currency:
-                :parameter date:
-                :returns ExchangeRate
-                Get Currencies by symbol.
-                check date is not weekend.
-                if currencies is same then rate is 1.
-                try to get rate between the two currencies
-                on that particular date from database if not found
-                get from api.
-            """
+            :param from_currency:
+            :param to_currency:
+            :parameter date:
+            :returns ExchangeRate
+            Get Currencies by symbol.
+            check date is not weekend.
+            if currencies is same then rate is 1.
+            try to get rate between the two currencies
+            on that particular date from database if not found
+            get from api.
+        """
         from_currency_object = check_currency(from_currency)
         to_currency_object = check_currency(to_currency)
         date = check_day_weekend(date)

@@ -25,7 +25,7 @@ data from the external API.
 3- Install the dependencies<br>
     pipenv install
     
-4- Create databse in mysql
+4- Create databse in mysql<br>
     mysql -u root -p<br>
     mysql>CREATE DATABASE exchange_rate;
     

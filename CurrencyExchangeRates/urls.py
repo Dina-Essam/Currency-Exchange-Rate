@@ -20,6 +20,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('api.urls')),
 ]
-
+"""
+In Production
+DEBUG = False
+if bad request return utils.views.error_404
+if server error return utils.views.error_500
+"""
 handler404 = 'utils.views.error_404'
 handler500 = 'utils.views.error_500'

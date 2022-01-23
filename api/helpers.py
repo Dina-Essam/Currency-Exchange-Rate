@@ -9,6 +9,11 @@ from utils.customvalidation import CustomValidation
 
 
 def check_currency(symbol):
+    """Check Currency Symbol.
+        :parameter symbol String
+        :returns Currency Object
+        if not found throw Exception
+    """
     try:
         return Currency.objects.get(symbol=symbol)
     except Currency.DoesNotExist:
@@ -17,6 +22,14 @@ def check_currency(symbol):
 
 
 def get_from_frankfurter(from_currency, to_currency, date):
+    """Get Rate From Frankfurter api.
+            :parameter date:
+            :parameter to_currency Object
+            :parameter from_currency Object
+            :returns ExchangeRate Object
+            Make get http request to frankfurter api to get rate
+            between the two currencies on that particular date.
+    """
     url = "https://api.frankfurter.app/" + date + "?from=" + from_currency.symbol + "&to" + to_currency.symbol
     response = requests.get(url)
     result = response.json()
@@ -27,6 +40,12 @@ def get_from_frankfurter(from_currency, to_currency, date):
 
 
 def check_day_weekend(date):
+    """Check its weekend day.
+        :parameter date:
+        :returns date
+        Check if the date is Sunday or Saturday return previous friday date.
+        else return the same date
+    """
     try:
         date = parse_date(date)
     except ValueError as ex:
@@ -41,6 +60,18 @@ class helper_functions:
 
     @staticmethod
     def get_exchange_rate(from_currency, to_currency, date):
+        """Check its weekend day.
+                :param from_currency:
+                :param to_currency:
+                :parameter date:
+                :returns ExchangeRate
+                Get Currencies by symbol.
+                check date is not weekend.
+                if currencies is same then rate is 1.
+                try to get rate between the two currencies
+                on that particular date from database if not found
+                get from api.
+            """
         from_currency_object = check_currency(from_currency)
         to_currency_object = check_currency(to_currency)
         date = check_day_weekend(date)
